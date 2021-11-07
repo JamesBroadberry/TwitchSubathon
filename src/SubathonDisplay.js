@@ -1,25 +1,18 @@
-import { useState } from "react";
 import styled from "styled-components";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import MarqueeWhenOverflowText from "./MarqueeWhenOverflowText";
 import Timer from "./Timer";
 
-function SubathonDisplay({ config, subsThisStream }) {
-
-  const [subathonEndDate, setSubathonEndDate] = useState(new Date(Date.now() + config.initialMinutes * 60 * 1000));
-  const [timeLastAdded, setTimeLastAdded] = useState(new Date(0)); // Beginning of time
+function SubathonDisplay({ config, subsThisStream, subathonEndDate, timeLastAdded }) {
 
   const achievedGoal = () => {
     const defaultReturnValue = [0, "No goal achieved"]
-
     const sortedGoals = Object.entries(config.goals).sort(x => x[0]).filter(x => x[0] <= subsThisStream);
     return sortedGoals.length > 0 ? sortedGoals[sortedGoals.length - 1] : defaultReturnValue;
   }
 
-
   const currentGoal = () => {
     const defaultReturnValue = [Infinity, "All goals achieved"]
-
     const sortedGoals = Object.entries(config.goals).sort(x => x[0]).filter(x => x[0] > subsThisStream);
     return sortedGoals.length > 0 ? sortedGoals[0] : defaultReturnValue;
   }
@@ -27,16 +20,6 @@ function SubathonDisplay({ config, subsThisStream }) {
   // const currentGoalPercentage = () => {
   //   return Math.round(100 - (currentGoal()[0] - subsThisStream) / (currentGoal()[0] - achievedGoal()[0]) * 100);
   // }
-
-  const addSubs = (numberOfSubs) => {
-    //setSubsThisStream(subsThisStream + numberOfSubs);
-    addSeconds(numberOfSubs * config.secondsPerSub);
-  }
-
-  const addSeconds = (numberOfSeconds) => {
-    setTimeLastAdded(Date.now());
-    setSubathonEndDate(new Date(subathonEndDate.getTime() + numberOfSeconds * 1000));
-  }
 
   return (
     <div className="App">
@@ -64,14 +47,7 @@ function SubathonDisplay({ config, subsThisStream }) {
           </ProgressLabels>
         </SubathonProgress>
       </SubathonContainer>
-      {/* Testing buttons - to be removed */}
-      <div style={{ textAlign: "center" }}>
-        <button style={{ marginTop: 10 }} onClick={() => addSubs(1)}>Add sub</button>
-        <button style={{ marginLeft: 10 }} onClick={() => addSubs(10)}>Add 10 subs</button>
-        <br />
-        <button style={{ marginTop: 10 }} onClick={() => addSubs(-1)}>Remove sub</button>
-        <button style={{ marginLeft: 10 }} onClick={() => addSubs(-10)}>Remove 10 subs</button>
-      </div>
+
     </div>
   );
 }
@@ -125,8 +101,6 @@ const SubathonContainer = styled.div`
   background-color: grey;
   width: 600px;
   height: 150px;
-  margin: auto;
-  margin-top: 1rem;
 `;
 
 export default SubathonDisplay;
