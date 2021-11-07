@@ -2,6 +2,7 @@
   "name": "twitchsubathon",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jamesbroadberry.github.io/TwitchSubathon/",
   "dependencies": {
     "bootstrap": "^5.1.3",
     "calculate-text-width": "0.0.3",
