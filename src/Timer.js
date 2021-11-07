@@ -50,7 +50,7 @@ const RecentlyAddedTime = styled.span`
       color: transparent;
     }
     50% {
-      color: green;
+      color: #2ECC40;
     }
     100% {
       color: transparent;
@@ -59,7 +59,7 @@ const RecentlyAddedTime = styled.span`
 `;
 
 const LowTime = styled.span`
-  color: red;
+  color: #FF4136;
 `;
 
 const CriticalTime = styled.span`
@@ -71,10 +71,10 @@ const CriticalTime = styled.span`
       color: transparent;
     }
     30% {
-      color: red;
+      color: #FF4136;
     }
     70% {
-      color: red;
+      color: #FF4136;
     }
     100% {
       color: transparent;

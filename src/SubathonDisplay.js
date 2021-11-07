@@ -23,7 +23,7 @@ function SubathonDisplay({ config, subsThisStream, subathonEndDate, timeLastAdde
 
   return (
     <div className="App">
-      <SubathonContainer>
+      <SubathonContainer className="SubathonContainer">
         <SubathonTop>
           <SubathonText>
             <span>{currentGoal()[0] - subsThisStream} subs needed for:</span>
@@ -81,7 +81,7 @@ const SubathonTop = styled.div`
 
 const SubathonProgress = styled.div`
   .progress-bar{
-    background-color: black;
+    background-color: #001f3f;
   }
 `;
 
@@ -97,8 +97,8 @@ const SubathonContainer = styled.div`
   justify-content: space-between;
   padding: 0.5rem;
   font-size: 1.5rem;
-  color: black;
-  background-color: grey;
+  color: white;
+  background: linear-gradient(77deg, rgb(28,33,43) 0%, rgb(28,44,52) 50%, rgb(28,36,52) 100%);
   width: 600px;
   height: 150px;
 `;
