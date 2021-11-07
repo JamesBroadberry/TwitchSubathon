@@ -5,7 +5,7 @@ function App() {
 
   const [status, setStatus] = useState("Loading...");
 
-  const [config, setConfig] = useState({
+  const [config, _] = useState({
     goals: {
       10: "Do a thing",
       25: "Do another thing",
@@ -38,6 +38,9 @@ function App() {
 
         switch (username) {
           case config.twitchUsername:
+            if (messageContent == "test") {
+              // do nothing for now
+            }
 
             break;
           case "streamelements":
