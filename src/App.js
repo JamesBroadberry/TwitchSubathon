@@ -9,7 +9,10 @@ function App() {
     goals: {},
     twitchUsername: "",
     initialMinutes: 0,
-    secondsPerSub: 0,
+    secondsPerPrimeSub: 0,
+    secondsPerTier1Sub: 0,
+    secondsPerTier2Sub: 0,
+    secondsPerTier3Sub: 0,
     secondsPerBit: 0,
     secondsPerPenny: 0
   });
@@ -29,7 +32,6 @@ function App() {
 
   const addSubs = (numberOfSubs) => {
     setSubsThisStream(subsThisStream + numberOfSubs);
-    addSeconds(numberOfSubs * config.secondsPerSub);
   }
 
   const addSeconds = (numberOfSeconds) => {
@@ -106,13 +108,68 @@ function App() {
             }
             if (addSubsMatch) {
               addSubs(parseInt(addSubsMatch[1]));
+              addSeconds(config.secondsPerPrimeSub);
             }
             if (addMinutesMatch) {
               addSeconds(parseInt(addMinutesMatch[1] * 60));
             }
             break;
-          case "streamelements":
+          case "streamlabs":
+            const bitsMatch = messageContent.match(/has cheered (\d+) bits/i);
+            const donationMatch = messageContent.match(/just tipped \$(.*)!/i)
+            const personalSubscriptionMatch = messageContent.match(/just subscribed with (.*)!/i);
+            const giftedSubscriptionMatch = messageContent.match(/just gifted (\d+) (.*) subscriptions!/i);
+            if (bitsMatch) {
+              const numberOfBits = parseInt(bitsMatch[1]);
+              addSeconds(numberOfBits * config.secondsPerBit);
+            }
+            if (donationMatch) {
+              const numberOfPennies = parseFloat(donationMatch[1]) * 100;
+              addSeconds(numberOfPennies * config.secondsPerPenny);
+            }
+            if (personalSubscriptionMatch) {
+              addSubs(1);
 
+              const subscriptionType = personalSubscriptionMatch[1];
+              switch (subscriptionType) {
+                case "Twitch Prime":
+                  addSeconds(config.secondsPerPrimeSub);
+                  break;
+                case "Tier 1":
+                  addSeconds(config.secondsPerTier1Sub);
+                  break;
+                case "Tier 2":
+                  addSeconds(config.secondsPerTier2Sub);
+                  break;
+                case "Tier 3":
+                  addSeconds(config.secondsPerTier3Sub);
+                  break;
+                default:
+                  break;
+              }
+            }
+            if (giftedSubscriptionMatch) {
+              const numberOfGiftedSubs = parseInt(giftedSubscriptionMatch[1]);
+              addSubs(numberOfGiftedSubs);
+
+              const subscriptionType = giftedSubscriptionMatch[2];
+              switch (subscriptionType) {
+                case "Twitch Prime":
+                  addSeconds(numberOfGiftedSubs * config.secondsPerPrimeSub);
+                  break;
+                case "Tier 1":
+                  addSeconds(numberOfGiftedSubs * config.secondsPerTier1Sub);
+                  break;
+                case "Tier 2":
+                  addSeconds(numberOfGiftedSubs * config.secondsPerTier2Sub);
+                  break;
+                case "Tier 3":
+                  addSeconds(numberOfGiftedSubs * config.secondsPerTier3Sub);
+                  break;
+                default:
+                  break;
+              }
+            }
             break;
           default:
             break;
