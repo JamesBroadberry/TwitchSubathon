@@ -22,33 +22,30 @@ function SubathonDisplay({ config, subsThisStream, subathonEndDate, timeLastAdde
   // }
 
   return (
-    <div className="App">
-      <SubathonContainer className="SubathonContainer">
-        <SubathonTop>
-          <SubathonText>
-            <span>{currentGoal()[0] - subsThisStream} subs needed for:</span>
-            <SubathonNextGoalText>
-              <MarqueeWhenOverflowText>
-                {currentGoal()[1]}
-              </MarqueeWhenOverflowText>
-            </SubathonNextGoalText>
-          </SubathonText>
-          <SubathonTimer>
-            <Timer endDate={subathonEndDate} timeLastAdded={timeLastAdded} />
-          </SubathonTimer>
-        </SubathonTop>
-        <SubathonProgress>
-          {/* label={currentGoalPercentage() + "%"} */}
-          <ProgressBar animated now={subsThisStream} min={achievedGoal()[0]} max={currentGoal()[0]} />
-          <ProgressLabels>
-            <span>{achievedGoal()[0]}</span>
-            <span>{subsThisStream}</span>
-            <span>{currentGoal()[0]}</span>
-          </ProgressLabels>
-        </SubathonProgress>
-      </SubathonContainer>
-
-    </div>
+    <SubathonContainer className="SubathonContainer">
+      <SubathonTop>
+        <SubathonText>
+          <span>{currentGoal()[0] - subsThisStream} subs needed for:</span>
+          <SubathonNextGoalText>
+            <MarqueeWhenOverflowText>
+              {currentGoal()[1]}
+            </MarqueeWhenOverflowText>
+          </SubathonNextGoalText>
+        </SubathonText>
+        <SubathonTimer>
+          <Timer endDate={subathonEndDate} timeLastAdded={timeLastAdded} />
+        </SubathonTimer>
+      </SubathonTop>
+      <SubathonProgress>
+        {/* label={currentGoalPercentage() + "%"} */}
+        <ProgressBar animated now={subsThisStream} min={achievedGoal()[0]} max={currentGoal()[0]} />
+        <ProgressLabels>
+          <span>{achievedGoal()[0]}</span>
+          <span>{subsThisStream}</span>
+          <span>{currentGoal()[0]}</span>
+        </ProgressLabels>
+      </SubathonProgress>
+    </SubathonContainer>
   );
 }
 

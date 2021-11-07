@@ -205,7 +205,10 @@ function App() {
   };
 
   return <>
-    {status.length > 0 && config !== undefined ? <span>{status}</span> : <SubathonDisplay config={config} subsThisStream={subsThisStream} subathonEndDate={subathonEndDate} timeLastAdded={timeLastAdded}></SubathonDisplay>}
+
+    <div className="App">
+      {status.length > 0 && config !== undefined ? <span>{status}</span> : <SubathonDisplay config={config} subsThisStream={subsThisStream} subathonEndDate={subathonEndDate} timeLastAdded={timeLastAdded}></SubathonDisplay>}
+    </div>
   </>
 }
 
