@@ -50,7 +50,7 @@ const RecentlyAddedTime = styled.span`
       color: transparent;
     }
     50% {
-      color: #2ECC40;
+      color: var(--subathon-addedtime);
     }
     100% {
       color: transparent;
@@ -59,7 +59,7 @@ const RecentlyAddedTime = styled.span`
 `;
 
 const LowTime = styled.span`
-  color: #FF4136;
+  color: var(--subathon-lowtime);
 `;
 
 const CriticalTime = styled.span`
@@ -71,10 +71,10 @@ const CriticalTime = styled.span`
       color: transparent;
     }
     30% {
-      color: #FF4136;
+      color: var(--subathon-criticaltime);
     }
     70% {
-      color: #FF4136;
+      color: var(--subathon-criticaltime);
     }
     100% {
       color: transparent;
@@ -84,7 +84,6 @@ const CriticalTime = styled.span`
 
 
 const Normal = styled.span`
-  color: black;
 `;
 
 export default Timer;

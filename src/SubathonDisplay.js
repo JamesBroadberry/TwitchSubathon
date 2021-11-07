@@ -81,7 +81,7 @@ const SubathonTop = styled.div`
 
 const SubathonProgress = styled.div`
   .progress-bar{
-    background-color: #001f3f;
+    background-color: var(--subathon-progressbarcolor);
   }
 `;
 
@@ -92,13 +92,20 @@ const ProgressLabels = styled.div`
 `;
 
 const SubathonContainer = styled.div`
+  --subathon-criticaltime: #FF4136;
+  --subathon-lowtime: #FF4136;
+  --subathon-addedtime: #2ECC40;
+  --subathon-textcolor: white;
+  --subathon-progressbarcolor: #001f3f;
+  --subathon-background: linear-gradient(77deg, rgb(28,33,43) 0%, rgb(28,44,52) 50%, rgb(28,36,52) 100%);
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0.5rem;
   font-size: 1.5rem;
-  color: white;
-  background: linear-gradient(77deg, rgb(28,33,43) 0%, rgb(28,44,52) 50%, rgb(28,36,52) 100%);
+  color: var(--subathon-textcolor);
+  background: var(--subathon-background);
   width: 600px;
   height: 150px;
 `;
