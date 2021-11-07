@@ -98,7 +98,8 @@ const SubathonContainer = styled.div`
   --subathon-textcolor: white;
   --subathon-progressbarcolor: #001f3f;
   --subathon-background: linear-gradient(77deg, rgb(28,33,43) 0%, rgb(28,44,52) 50%, rgb(28,36,52) 100%);
-  
+
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
