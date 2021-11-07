@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/static/js/main.e796b367.chunk.js",
-    "main.js.map": "/static/js/main.e796b367.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.24b79e90.js",
-    "runtime-main.js.map": "/static/js/runtime-main.24b79e90.js.map",
-    "static/css/2.0a9ec390.chunk.css": "/static/css/2.0a9ec390.chunk.css",
-    "static/js/2.af95f623.chunk.js": "/static/js/2.af95f623.chunk.js",
-    "static/js/2.af95f623.chunk.js.map": "/static/js/2.af95f623.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.0a9ec390.chunk.css.map": "/static/css/2.0a9ec390.chunk.css.map",
-    "static/js/2.af95f623.chunk.js.LICENSE.txt": "/static/js/2.af95f623.chunk.js.LICENSE.txt"
+    "main.js": "/TwitchSubathon/static/js/main.e796b367.chunk.js",
+    "main.js.map": "/TwitchSubathon/static/js/main.e796b367.chunk.js.map",
+    "runtime-main.js": "/TwitchSubathon/static/js/runtime-main.041cd38e.js",
+    "runtime-main.js.map": "/TwitchSubathon/static/js/runtime-main.041cd38e.js.map",
+    "static/css/2.0a9ec390.chunk.css": "/TwitchSubathon/static/css/2.0a9ec390.chunk.css",
+    "static/js/2.f6c777d3.chunk.js": "/TwitchSubathon/static/js/2.f6c777d3.chunk.js",
+    "static/js/2.f6c777d3.chunk.js.map": "/TwitchSubathon/static/js/2.f6c777d3.chunk.js.map",
+    "index.html": "/TwitchSubathon/index.html",
+    "static/css/2.0a9ec390.chunk.css.map": "/TwitchSubathon/static/css/2.0a9ec390.chunk.css.map",
+    "static/js/2.f6c777d3.chunk.js.LICENSE.txt": "/TwitchSubathon/static/js/2.f6c777d3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.24b79e90.js",
+    "static/js/runtime-main.041cd38e.js",
     "static/css/2.0a9ec390.chunk.css",
-    "static/js/2.af95f623.chunk.js",
+    "static/js/2.f6c777d3.chunk.js",
     "static/js/main.e796b367.chunk.js"
   ]
 }
