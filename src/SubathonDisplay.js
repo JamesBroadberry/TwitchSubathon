@@ -4,9 +4,8 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import MarqueeWhenOverflowText from "./MarqueeWhenOverflowText";
 import Timer from "./Timer";
 
-function SubathonDisplay({ config }) {
+function SubathonDisplay({ config, subsThisStream }) {
 
-  const [subsThisStream, setSubsThisStream] = useState(0);
   const [subathonEndDate, setSubathonEndDate] = useState(new Date(Date.now() + config.initialMinutes * 60 * 1000));
   const [timeLastAdded, setTimeLastAdded] = useState(new Date(0)); // Beginning of time
 
@@ -30,7 +29,7 @@ function SubathonDisplay({ config }) {
   // }
 
   const addSubs = (numberOfSubs) => {
-    setSubsThisStream(subsThisStream + numberOfSubs);
+    //setSubsThisStream(subsThisStream + numberOfSubs);
     addSeconds(numberOfSubs * config.secondsPerSub);
   }
 

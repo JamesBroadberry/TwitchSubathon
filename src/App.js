@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SubathonDisplay from "./SubathonDisplay";
 
 function App() {
@@ -18,14 +18,48 @@ function App() {
     secondsPerPenny: 60 / 100
   });
 
-  useEffect(() => {
-    const socket = new WebSocket("wss://irc-ws.chat.twitch.tv/");
+  const [subsThisStream, setSubsThisStream] = useState(0);
 
-    socket.onmessage = ({ data }) => {
+  const socket = useRef(null);
+
+  useEffect(() => {
+    socket.current = new WebSocket("wss://irc-ws.chat.twitch.tv/");
+
+    socket.current.onopen = () => {
+      setStatus("Connecting...");
+      // "Login" with anonymous username
+      socket.current.send("NICK " + getRandomNickname());
+
+      setStatus("Joining Twitch chat...");
+      // Join the Twitch chat of the requested user
+      socket.current.send("JOIN #" + config.twitchUsername);
+
+      setStatus("");
+    };
+
+    socket.current.onerror = () => {
+      setStatus("🛑 Connection to Twitch Chat Error 🛑");
+    }
+
+    socket.current.onclose = () => {
+      setStatus("🛑 Connection to Twitch Closed 🛑");
+    }
+
+    // Specify how to clean up after this effect:
+    return () => {
+      socket.current.close();
+    };
+  }, [config]);
+
+  useEffect(() => {
+
+    if (!socket.current) return;
+
+    socket.current.onmessage = ({ data }) => {
       // Need to handle "PING" messages to keep the socket connection alive
       if (data.startsWith("PING :tmi.twitch.tv")) {
         console.log("Received a PING, sending back PONG");
-        socket.send("PONG :tmi.twitch.tv");
+        socket.current.send("PONG :tmi.twitch.tv");
         return;
       }
       // These are the messages sent by chatters - we need to process these
@@ -39,7 +73,7 @@ function App() {
         switch (username) {
           case config.twitchUsername:
             if (messageContent === "test") {
-              // do nothing for now
+              setSubsThisStream(subsThisStream + 1)
             }
 
             break;
@@ -68,31 +102,9 @@ function App() {
       }
 
     };
-    socket.onopen = () => {
-      setStatus("Connecting...");
-      // "Login" with anonymous username
-      socket.send("NICK " + getRandomNickname());
 
-      setStatus("Joining Twitch chat...");
-      // Join the Twitch chat of the requested user
-      socket.send("JOIN #" + config.twitchUsername);
 
-      setStatus("");
-    };
-
-    socket.onerror = () => {
-      setStatus("🛑 Connection to Twitch Chat Error 🛑");
-    }
-
-    socket.onclose = () => {
-      setStatus("🛑 Connection to Twitch Closed 🛑");
-    }
-
-    // Specify how to clean up after this effect:
-    return () => {
-      socket.close();
-    };
-  }, [config]);
+  });
 
 
 
@@ -106,7 +118,7 @@ function App() {
   };
 
   return <>
-    {status.length > 0 && config !== undefined ? <span>{status}</span> : <SubathonDisplay config={config}></SubathonDisplay>}
+    {status.length > 0 && config !== undefined ? <span>{status}</span> : <SubathonDisplay config={config} subsThisStream={subsThisStream}></SubathonDisplay>}
   </>
 }
 
