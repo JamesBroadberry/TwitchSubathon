@@ -5,7 +5,7 @@ function App() {
 
   const [status, setStatus] = useState("Loading...");
 
-  const [config, _] = useState({
+  const [config] = useState({
     goals: {
       10: "Do a thing",
       25: "Do another thing",
@@ -38,7 +38,7 @@ function App() {
 
         switch (username) {
           case config.twitchUsername:
-            if (messageContent == "test") {
+            if (messageContent === "test") {
               // do nothing for now
             }
 
