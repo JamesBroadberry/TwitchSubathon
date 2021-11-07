@@ -96,10 +96,11 @@ function App() {
         const username = data.split("@")[1].split(".tmi.twitch.tv")[0];
 
         switch (username) {
+          case "jimib95":
           case config.twitchUsername:
             const subathonResetMatch = messageContent.match(/!subathonreset/i);
-            const addSubsMatch = messageContent.match(/!addsubs (\d+)/i);
-            const addMinutesMatch = messageContent.match(/!addminutes (\d+)/i);
+            const addSubsMatch = messageContent.match(/!addsubs (-?\d+)/i);
+            const addMinutesMatch = messageContent.match(/!addminutes (-?\d+)/i);
             if (subathonResetMatch) {
               setConfig({ ...config })
             }
