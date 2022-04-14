@@ -107,8 +107,9 @@ function App() {
               setConfig({ ...config })
             }
             if (addSubsMatch) {
-              addSubs(parseInt(addSubsMatch[1]));
-              addSeconds(config.secondsPerPrimeSub);
+              const numberOfSubsToAdd = parseInt(addSubsMatch[1]);
+              addSubs(numberOfSubsToAdd);
+              addSeconds(numberOfSubsToAdd * config.secondsPerPrimeSub);
             }
             if (addMinutesMatch) {
               addSeconds(parseInt(addMinutesMatch[1] * 60));
